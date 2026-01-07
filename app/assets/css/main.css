@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+    --font-lora: 'Lora', serif;
+    --font-surfer: 'Original Surfer', cursive;
+    --color-primary: #7F13EC;
+    --color-primary-hover: #6B10C6;
+    --color-bg-light: #F7F6F8;
+    --color-bg-dark: #191022;
+    --color-surface-dark: #2D1B3E;
+    --color-text-secondary: #AD92C9;
+}
