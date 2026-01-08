@@ -1,18 +1,16 @@
+import type { AnimeStatus } from "./data";
+
 export interface CustomCarouselProps {
     useBadgeEp?: boolean;
-    items: {
-        title: string;
-        img: string;
-        status: AnimeStatus;
-        format: string;
-        episode: string | number;
-        currentEpisode?: string | number;
-    }[];
+    items: CustomCarouselItem[];
 }
 
-export type AnimeStatus =
-  | 'FINISHED'
-  | 'RELEASING'
-  | 'NOT_YET_RELEASED'
-  | 'CANCELLED'
-  | 'HIATUS'
+export type CustomCarouselItem = {
+    title: string;
+    img: string;
+    status: AnimeStatus;
+    format: string;
+    episode: string | number;
+    currentEpisode?: string | number;
+}
+

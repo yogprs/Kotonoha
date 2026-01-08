@@ -11,3 +11,56 @@
     --color-surface-dark: #2D1B3E;
     --color-text-secondary: #AD92C9;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.6) rgba(15, 15, 20, 0.8);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.7) rgba(15, 15, 20, 0.9);
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Hide scrollbar arrow */
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(15, 15, 20, 0.9);
+}
+
+/* Thumb (without border-radius) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(139, 92, 246, 0.85),
+    rgba(91, 33, 182, 0.85)
+  );
+  border-radius: 10px;
+}
+
+/* Hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(167, 139, 250, 1),
+    rgba(124, 58, 237, 1)
+  );
+}

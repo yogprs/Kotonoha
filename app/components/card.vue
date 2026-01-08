@@ -10,7 +10,13 @@ withDefaults(defineProps<CustomCardProps>(), {
 <template>
   <div class="w-full h-full">
     <!-- IMAGE WRAPPER -->
-    <div class="relative w-50 h-75 overflow-hidden rounded-lg">
+    <div
+      :class="[
+        `${width ?? 'w-50'}`,
+        `${height ?? 'h-75'}`,
+        'relative overflow-hidden rounded-lg',
+      ]"
+    >
       <!-- EP BADGE -->
       <div
         v-if="item?.currentEpisode && useBadgeEp"

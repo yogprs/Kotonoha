@@ -1,4 +1,4 @@
-import type { AnimeStatus } from "~/types/carousel";
+import type { AnimeStatus } from "~/types/data";
 
 export const formatStatusText = (status: string): string => {
   return status
@@ -28,3 +28,15 @@ export const getStatusColor = (status: AnimeStatus): string => {
       return "text-gray-400";
   }
 };
+
+export const formatScore = (num: number): number => {
+  return num / 10;
+}
+
+export const capitalizeFirstLetter = (str: string) => {
+  if (str?.length === 0) {
+    return ""; // Handle empty strings
+  }
+  const lowerStr = str?.toLowerCase()
+  return lowerStr?.charAt(0).toUpperCase() + lowerStr?.slice(1);
+}
