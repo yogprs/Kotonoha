@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import type { CustomCardProps } from "~/types/card";
+import type { CustomCardEmits, CustomCardProps } from "~/types/card";
 
-withDefaults(defineProps<CustomCardProps>(), {
+const props = withDefaults(defineProps<CustomCardProps>(), {
   hoverable: true,
   useBadgeEp: false,
 });
+
+const emits = defineEmits<CustomCardEmits>();
+
+const cardToggle = (id: number) => {
+  if (!props?.hoverable) return;
+  emits("toggle", id);
+};
 </script>
 
 <template>
-  <div class="w-full h-full">
+  <div @click="cardToggle(item?.id)" class="w-full h-full">
     <!-- IMAGE WRAPPER -->
     <div
       :class="[

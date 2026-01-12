@@ -15,6 +15,7 @@ onMounted(() => {
 const getCurrentTrend = () => {
   currentTrend.value = [
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -22,6 +23,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -29,6 +31,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -36,6 +39,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -43,6 +47,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -50,6 +55,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -57,6 +63,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -64,6 +71,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -71,6 +79,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -78,6 +87,7 @@ const getCurrentTrend = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -90,6 +100,7 @@ const getCurrentTrend = () => {
 const getLastUpdateEpisode = () => {
   lastUpdateEpisode.value = [
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -98,6 +109,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -106,6 +118,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -114,6 +127,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -122,6 +136,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -130,6 +145,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -138,6 +154,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -146,6 +163,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -154,6 +172,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,
@@ -162,6 +181,7 @@ const getLastUpdateEpisode = () => {
       format: "TV",
     },
     {
+      id: 1,
       title: "Sousou no Frieren",
       img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
       episode: 24,

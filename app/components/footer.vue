@@ -1,14 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import social from "~/assets/json/social_media.json";
+</script>
 
 <template>
   <div class="w-full h-full bg-surface-dark ring ring-[#362348]">
     <div class="flex flex-row mx-12 py-12">
       <div class="w-[40%] flex flex-col gap-4 px-10">
         <h3 class="font-bold text-2xl font-surfer">Kotonoha</h3>
-        <span class="text-sm text-justify">
-          This site stores user account data only for anime draft purposes using
-          the anilist api as the anime data source.
-        </span>
+        <div class="flex flex-col gap-1">
+          <span class="text-sm text-justify">
+            This site stores user account data only for anime draft and list
+            purposes. Anime data provided by the
+            <a
+              href="https://docs.anilist.co"
+              class="underline hover:cursor-pointer"
+            >
+              AniList API </a
+            >. AniList content is licensed under the MIT License.
+          </span>
+        </div>
       </div>
       <div class="w-[60%] flex justify-end px-18 gap-18">
         <div class="flex flex-col gap-4">
@@ -26,17 +36,26 @@
           >
         </div>
         <div class="flex flex-col gap-4">
-          <span class="hover:text-text-secondary hover:cursor-pointer"
-            >Instagram</span
+          <a
+            :href="social.instagram"
+            class="hover:text-text-secondary hover:cursor-pointer"
           >
-          <span class="hover:text-text-secondary hover:cursor-pointer"
-            >Github</span
+            Instagram
+          </a>
+          <a
+            :href="social.github"
+            class="hover:text-text-secondary hover:cursor-pointer"
+            >Github</a
           >
-          <span class="hover:text-text-secondary hover:cursor-pointer"
-            >Discord</span
+          <a
+            :href="social.discord"
+            class="hover:text-text-secondary hover:cursor-pointer"
+            >Discord</a
           >
-          <span class="hover:text-text-secondary hover:cursor-pointer"
-            >Donate</span
+          <a
+            :href="social.tako"
+            class="hover:text-text-secondary hover:cursor-pointer"
+            >Donate</a
           >
         </div>
       </div>
