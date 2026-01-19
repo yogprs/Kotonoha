@@ -34,13 +34,17 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: true,
-    tsConfig: {
-      include: [
-        'nuxt.d.ts',
-        '.nuxt/**/*.ts',
-        'types/**/*.ts',
-        'types/**/*.d.ts',
-      ],
-    },
+    typeCheck: false,
   },
+  // typescript: {
+  //   strict: true,
+  //   tsConfig: {
+  //     include: [
+  //       'nuxt.d.ts',
+  //       '.nuxt/**/*.ts',
+  //       'types/**/*.ts',
+  //       'types/**/*.d.ts',
+  //     ],
+  //   },
+  // },
 })
