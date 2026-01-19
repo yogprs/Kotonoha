@@ -8,14 +8,14 @@ const props = withDefaults(defineProps<CustomCardProps>(), {
 
 const emits = defineEmits<CustomCardEmits>();
 
-const cardToggle = (id: number) => {
+const cardToggle = (id: string) => {
   if (!props?.hoverable) return;
   emits("toggle", id);
 };
 </script>
 
 <template>
-  <div @click="cardToggle(item?.id)" class="w-full h-full">
+  <div @click="cardToggle(item?.id)">
     <!-- IMAGE WRAPPER -->
     <div
       :class="[
@@ -35,7 +35,11 @@ const cardToggle = (id: number) => {
       </div>
 
       <!-- IMAGE -->
-      <NuxtImg :src="item?.img" class="w-full h-full object-cover" />
+      <NuxtImg
+        :src="item?.img"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
 
       <!-- BOTTOM SHADOW OVERLAY -->
       <div
@@ -60,7 +64,7 @@ const cardToggle = (id: number) => {
     </div>
 
     <!-- TITLE -->
-    <div v-if="hoverable" class="w-full text-center py-2">
+    <div v-if="hoverable" :class="`${width ?? 'w-50'} text-center py-2`">
       <span
         class="font-bold transition-colors duration-200 group-hover:text-text-secondary"
       >

@@ -6,7 +6,7 @@ export interface CustomCarouselProps {
 }
 
 export type CustomCarouselItem = {
-    id: number;
+    id: string;
     title: string;
     img: string;
     status: AnimeStatus;

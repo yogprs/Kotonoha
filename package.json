@@ -16,6 +16,8 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@pinia/nuxt": "^0.11.3",
     "@tailwindcss/vite": "^4.1.18",
+    "@vueuse/nuxt": "^14.1.0",
+    "dotenv": "^17.2.3",
     "nuxt": "^4.2.2",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.1.18",
@@ -23,6 +25,7 @@
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4"
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@types/node": "^25.0.9"
   }
 }

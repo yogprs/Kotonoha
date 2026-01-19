@@ -3,11 +3,17 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
+  runtimeConfig: {
+    public: {
+      anilistAPI: process.env.ANILIST_API_URL,
+    }
+  },
   modules: [
     '@nuxt/ui',
     '@nuxtjs/google-fonts',
     '@pinia/nuxt',
     '@nuxt/image',
+    '@vueuse/nuxt',
   ],
   pinia: {
     storesDirs: ['./stores/**', './app/stores/**'],

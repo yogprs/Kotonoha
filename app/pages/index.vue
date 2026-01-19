@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { useAnimeStore } from "~/stores/anime";
 import type { CustomCarouselItem } from "~/types/carousel";
 import type { TopAnimeData } from "~/types/topAnime";
 
+const animeStore = useAnimeStore();
 const currentTrend = ref<CustomCarouselItem[]>([]);
 const lastUpdateEpisode = ref<CustomCarouselItem[]>([]);
 const topAnime = ref<TopAnimeData[]>([]);
+const currentTrendLoading = ref<boolean>(false);
+const lastUpdatedLoading = ref<boolean>(false);
+const topAnimeLoading = ref<boolean>(false);
 
 onMounted(() => {
   getCurrentTrend();
@@ -12,309 +17,331 @@ onMounted(() => {
   getTopAnime();
 });
 
-const getCurrentTrend = () => {
-  currentTrend.value = [
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-  ];
+const getCurrentTrend = async (): Promise<void> => {
+  currentTrendLoading.value = true;
+  try {
+    currentTrend.value = [
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+    ];
+    await animeStore.getAnime();
+  } catch (e) {
+    console.error(e);
+  } finally {
+    currentTrendLoading.value = false;
+  }
 };
 
-const getLastUpdateEpisode = () => {
-  lastUpdateEpisode.value = [
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      id: 1,
-      title: "Sousou no Frieren",
-      img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episode: 24,
-      currentEpisode: 24,
-      status: "FINISHED",
-      format: "TV",
-    },
-  ];
+const getLastUpdateEpisode = async (): Promise<void> => {
+  lastUpdatedLoading.value = true;
+  try {
+    lastUpdateEpisode.value = [
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        id: "1",
+        title: "Sousou no Frieren",
+        img: "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episode: 24,
+        currentEpisode: 24,
+        status: "FINISHED",
+        format: "TV",
+      },
+    ];
+  } catch (e) {
+    console.error(e);
+  } finally {
+    lastUpdatedLoading.value = false;
+  }
 };
 
-const getTopAnime = () => {
-  topAnime.value = [
-    {
-      _id: "1",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "2",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "3",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "4",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "5",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "6",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "7",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "8",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "9",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-    {
-      _id: "10",
-      title: "Sousou no Frieren",
-      genres: ["Adventure", "Drama", "Fantasy"],
-      coverImage:
-        "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
-      episodes: 24,
-      meanScore: 91,
-      season: "FALL",
-      status: "FINISHED",
-      format: "TV",
-    },
-  ];
+const getTopAnime = async (): Promise<void> => {
+  topAnimeLoading.value = true;
+  try {
+    topAnime.value = [
+      {
+        _id: "1",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "2",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "3",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "4",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "5",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "6",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "7",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "8",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "9",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+      {
+        _id: "10",
+        title: "Sousou no Frieren",
+        genres: ["Adventure", "Drama", "Fantasy"],
+        coverImage:
+          "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx154587-qQTzQnEJJ3oB.jpg",
+        episodes: 24,
+        meanScore: 91,
+        season: "FALL",
+        status: "FINISHED",
+        format: "TV",
+      },
+    ];
+  } catch (e) {
+    console.error(e);
+  } finally {
+    topAnimeLoading.value = false;
+  }
 };
 </script>
 <template>
@@ -385,7 +412,7 @@ const getTopAnime = () => {
     </div>
   </div>
   <div class="h-full flex flex-col gap-6 pt-16 pb-8">
-    <div class="flex items-center gap-4 px-14">
+    <div class="flex items-center gap-4 px-8 md:px-14">
       <UIcon
         name="i-material-symbols:trending-up"
         class="size-6 text-primary"
@@ -393,11 +420,12 @@ const getTopAnime = () => {
       <h3 class="font-bold text-2xl">Currently Trending</h3>
     </div>
     <div class="h-full">
-      <Carousel :items="currentTrend" />
+      <USkeleton v-if="currentTrendLoading" />
+      <Carousel v-else :items="currentTrend" />
     </div>
   </div>
   <div class="h-full flex flex-col gap-6 pt-16 pb-8">
-    <div class="flex items-center gap-4 px-14">
+    <div class="flex items-center gap-4 px-8 md:px-14">
       <UIcon
         name="i-material-symbols:verified-rounded"
         class="size-6 text-primary"
@@ -405,27 +433,30 @@ const getTopAnime = () => {
       <h3 class="font-bold text-2xl">Last Updated Episode</h3>
     </div>
     <div class="h-full">
-      <Carousel :use-badge-ep="true" :items="lastUpdateEpisode" />
+      <USkeleton v-if="lastUpdatedLoading" />
+      <Carousel v-else :use-badge-ep="true" :items="lastUpdateEpisode" />
     </div>
   </div>
   <div class="w-full h-full">
     <div class="w-full h-full flex flex-col gap-6 pt-16 pb-8">
-      <div class="flex items-center gap-4 px-14">
+      <div class="flex items-center gap-4 px-8 md:px-14">
         <UIcon
           name="i-material-symbols:award-star"
           class="size-6 text-primary"
         />
         <h3 class="font-bold text-2xl">Top 10 Anime</h3>
       </div>
-      <div class="h-full px-14 pb-8">
-        <TopAnime :data="topAnime" />
+      <div class="h-full px-8 md:px-14 pb-8">
+        <USkeleton v-if="topAnimeLoading" />
+        <TopAnime v-else :data="topAnime" />
       </div>
     </div>
   </div>
 </template>
 <style lang="css" scoped>
 .herowrap {
-  background: linear-gradient(180deg, hsla(0, 0%, 100%, 0) 40%, #000),
+  background:
+    linear-gradient(180deg, hsla(0, 0%, 100%, 0) 40%, #000),
     linear-gradient(180deg, rgba(0, 0, 0, 0.624), hsla(0, 0%, 100%, 0) 30%),
     linear-gradient(270deg, hsla(0, 0%, 99%, 0) 40%, rgba(0, 0, 0, 0.541) 80%);
 }

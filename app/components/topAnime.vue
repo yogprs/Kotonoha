@@ -44,7 +44,9 @@ const getColor = (num: number, type: "index" | "title" | "badge") => {
     v-for="(item, index) in data"
     class="w-full flex gap-2 items-center pb-4"
   >
-    <span :class="[getColor(index + 1, 'index'), 'font-bold w-8']">
+    <span
+      :class="[getColor(index + 1, 'index'), 'hidden md:flex font-bold w-8']"
+    >
       #{{ index + 1 }}
     </span>
     <div
@@ -56,6 +58,7 @@ const getColor = (num: number, type: "index" | "title" | "badge") => {
           :hoverable="false"
           :use-badge-ep="false"
           :item="{
+            id: item?._id,
             title: item?.title,
             img: item?.coverImage,
             status: item?.status,
@@ -91,7 +94,7 @@ const getColor = (num: number, type: "index" | "title" | "badge") => {
             />
           </div>
         </div>
-        <div class="flex items-center pl-4 pr-12 gap-2">
+        <div class="md:flex hidden items-center pl-4 pr-12 gap-2">
           <div class="flex flex-row gap-1">
             <UIcon name="i-material-symbols:star-outline" class="size-6" />
             <span>{{ formatScore(item?.meanScore) }}</span>
