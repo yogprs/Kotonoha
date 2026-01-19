@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     ],
   },
   typescript: {
+    strict: true,
     tsConfig: {
       include: [
         'nuxt.d.ts',
