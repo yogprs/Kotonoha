@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       anilistAPI: process.env.ANILIST_API_URL ?? '',
     }
   },
+  srcDir: 'app/',
   modules: [
     '@nuxt/ui',
     '@nuxtjs/google-fonts',
