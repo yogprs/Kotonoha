@@ -5,7 +5,7 @@ withDefaults(defineProps<CustomCarouselProps>(), {
   useBadgeEp: false,
 });
 
-const isMobile = useMediaQuery("(max-width: 768px)");
+// const isMobile = useMediaQuery("(max-width: 768px)");
 
 const carouselUIStyle = {
   root: "relative px-4 md:px-14",

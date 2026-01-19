@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/image',
     '@vueuse/nuxt',
+    '@nuxt/eslint'
   ],
   pinia: {
     storesDirs: ['./stores/**', './app/stores/**'],
@@ -31,4 +32,9 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  typescript: {
+    tsConfig: {
+      include: ["types/**/*.d.ts"]
+    }
+  }
 })
