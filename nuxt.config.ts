@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/image',
     '@vueuse/nuxt',
+    '@nuxt/eslint'
   ],
   pinia: {
     storesDirs: ['./stores/**', './app/stores/**'],
