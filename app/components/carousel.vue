@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CustomCarouselProps } from '~/types/carousel';
+import type { CustomCarouselProps } from '~/types/carousel.ts';
 
 withDefaults(defineProps<CustomCarouselProps>(), {
   useBadgeEp: false,
