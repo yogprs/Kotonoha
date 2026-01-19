@@ -31,4 +31,9 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  typescript: {
+    tsConfig: {
+      include: ["types/**/*.d.ts"]
+    }
+  }
 })
