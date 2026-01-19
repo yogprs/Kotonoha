@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// check
 import type { CustomCarouselProps } from "~/types/carousel";
 
 withDefaults(defineProps<CustomCarouselProps>(), {
