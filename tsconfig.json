@@ -15,10 +15,28 @@
       "path": "./.nuxt/tsconfig.node.json"
     }
   ],
-  "compilerOptions": {
-    "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"]
-    }
-  }
+  // "compilerOptions": {
+  //   "paths": {
+  //     "~/*": ["./*"],
+  //     "@/*": ["./*"]
+  //   }
+  // },
+  
 }
+
+// {
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "~/*": ["./app/*"],
+//       "@/*": ["./app/*"]
+//     }
+//   },
+//   "files": [],
+//   "references": [
+//     { "path": "./.nuxt/tsconfig.app.json" },
+//     { "path": "./.nuxt/tsconfig.server.json" },
+//     { "path": "./.nuxt/tsconfig.shared.json" },
+//     { "path": "./.nuxt/tsconfig.node.json" }
+//   ]
+// }
