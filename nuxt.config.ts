@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   runtimeConfig: {
     public: {
-      anilistAPI: process.env.ANILIST_API_URL,
+      anilistAPI: process.env.ANILIST_API_URL ?? '',
     }
   },
   modules: [
@@ -34,7 +34,12 @@ export default defineNuxtConfig({
   },
   typescript: {
     tsConfig: {
-      include: ["types/**/*.d.ts"]
-    }
-  }
+      include: [
+        'nuxt.d.ts',
+        '.nuxt/**/*.ts',
+        'types/**/*.ts',
+        'types/**/*.d.ts',
+      ],
+    },
+  },
 })
