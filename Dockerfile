@@ -13,6 +13,8 @@ RUN npm install
 # Copy all source code
 COPY . .
 
+RUN echo "=== CHECK TYPES ===" && ls -R app/types || echo "❌ app/types NOT FOUND"
+
 # Build Nuxt
 RUN npm run build
 
