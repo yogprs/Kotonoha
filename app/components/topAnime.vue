@@ -1,38 +1,38 @@
 <script setup lang="ts">
-import type { TopAnimeProps } from "~/types/topAnime";
+import type { TopAnimeProps } from '@/types/topAnime';
 
 defineProps<TopAnimeProps>();
 
-const getColor = (num: number, type: "index" | "title" | "badge") => {
-  if (type === "index") {
+const getColor = (num: number, type: 'index' | 'title' | 'badge') => {
+  if (type === 'index') {
     if (num === 1) {
-      return "text-[#FFD700]";
+      return 'text-[#FFD700]';
     } else if (num === 2) {
-      return "text-[#C0C0C0]";
+      return 'text-[#C0C0C0]';
     } else if (num === 3) {
-      return "text-[#CD7F32]";
+      return 'text-[#CD7F32]';
     } else {
-      return "text-[#388E3C]";
+      return 'text-[#388E3C]';
     }
-  } else if (type === "title") {
+  } else if (type === 'title') {
     if (num === 1) {
-      return "hover:text-[#FFD700]";
+      return 'hover:text-[#FFD700]';
     } else if (num === 2) {
-      return "hover:text-[#C0C0C0]";
+      return 'hover:text-[#C0C0C0]';
     } else if (num === 3) {
-      return "hover:text-[#CD7F32]";
+      return 'hover:text-[#CD7F32]';
     } else {
-      return "hover:text-[#388E3C]";
+      return 'hover:text-[#388E3C]';
     }
   } else {
     if (num === 1) {
-      return "ring-[#FFD700]";
+      return 'ring-[#FFD700]';
     } else if (num === 2) {
-      return "ring-[#C0C0C0]";
+      return 'ring-[#C0C0C0]';
     } else if (num === 3) {
-      return "ring-[#CD7F32]";
+      return 'ring-[#CD7F32]';
     } else {
-      return "ring-[#388E3C]";
+      return 'ring-[#388E3C]';
     }
   }
 };
