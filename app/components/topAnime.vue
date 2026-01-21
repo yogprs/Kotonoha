@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TopAnimeProps } from '@/types/topAnime';
+import type { TopAnimeProps } from '../types/topAnime';
 
 defineProps<TopAnimeProps>();
 

@@ -14,9 +14,9 @@ export default defineNuxtConfig({
   //   "~/types": fileURLToPath(new URL('./app/types', import.meta.url)),
   //   "~/components": fileURLToPath(new URL('./app/components', import.meta.url)),
   // },
-  alias: {
-    '@types': '/app/types'
-  },
+  // alias: {
+  //   '@types': '/app/types'
+  // },
   modules: [
     '@nuxt/ui',
     '@nuxtjs/google-fonts',
