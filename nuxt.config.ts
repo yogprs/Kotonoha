@@ -9,11 +9,11 @@ export default defineNuxtConfig({
       anilistAPI: process.env.ANILIST_API_URL ?? '',
     }
   },
-  srcDir: 'app/',
-  alias: {
-    "~/types": fileURLToPath(new URL('./app/types', import.meta.url)),
-    "~/components": fileURLToPath(new URL('./app/components', import.meta.url)),
-  },
+  // srcDir: 'app/',
+  // alias: {
+  //   "~/types": fileURLToPath(new URL('./app/types', import.meta.url)),
+  //   "~/components": fileURLToPath(new URL('./app/components', import.meta.url)),
+  // },
   modules: [
     '@nuxt/ui',
     '@nuxtjs/google-fonts',
@@ -40,7 +40,11 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: true,
-    typeCheck: false,
+    tsConfig: {
+      compilerOptions: {
+        module: "ESNext",
+      },
+    },
   },
   // typescript: {
   //   strict: true,
