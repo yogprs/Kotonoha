@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAnimeStore } from '~/stores/anime';
-import type { CustomCarouselItem } from '@/types/carousel';
-import type { TopAnimeData } from '@/types/topAnime';
+import type { CustomCarouselItem } from '../types/carousel';
+import type { TopAnimeData } from '../types/topAnime';
 
 const animeStore = useAnimeStore();
 const currentTrend = ref<CustomCarouselItem[]>([]);

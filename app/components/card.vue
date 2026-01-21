@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CustomCardEmits, CustomCardProps } from '@/types/card';
+import type { CustomCardEmits, CustomCardProps } from '../types/card';
 
 const props = withDefaults(defineProps<CustomCardProps>(), {
   hoverable: true,
