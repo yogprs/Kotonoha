@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "@vueuse/nuxt": "^14.1.0",
     "dotenv": "^17.2.3",
+    "ioredis": "^5.9.2",
     "nuxt": "^4.2.2",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.1.18",
@@ -37,6 +38,7 @@
     "eslint-plugin-vue": "^10.7.0",
     "prettier": "^3.8.0",
     "typescript-eslint": "^8.53.0",
-    "vue-eslint-parser": "^10.2.0"
+    "vue-eslint-parser": "^10.2.0",
+    "vue-tsc": "^3.2.2"
   }
 }

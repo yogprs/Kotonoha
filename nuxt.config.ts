@@ -1,22 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
-import { fileURLToPath } from 'node:url'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   runtimeConfig: {
     public: {
       anilistAPI: process.env.ANILIST_API_URL ?? '',
+      timeout: 8000,
     }
   },
-  // srcDir: 'app/',
-  // alias: {
-  //   "~/types": fileURLToPath(new URL('./app/types', import.meta.url)),
-  //   "~/components": fileURLToPath(new URL('./app/components', import.meta.url)),
-  // },
-  // alias: {
-  //   '@types': '/app/types'
-  // },
   modules: [
     '@nuxt/ui',
     '@nuxtjs/google-fonts',
@@ -43,21 +35,23 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: true,
+    // typeCheck: true,
     tsConfig: {
       compilerOptions: {
         module: "ESNext",
       },
     },
   },
-  // typescript: {
-  //   strict: true,
-  //   tsConfig: {
-  //     include: [
-  //       'nuxt.d.ts',
-  //       '.nuxt/**/*.ts',
-  //       'types/**/*.ts',
-  //       'types/**/*.d.ts',
-  //     ],
-  //   },
-  // },
+  nitro: {
+    storage: {
+      cache: process.env.APP_MODE === 'development' ? {
+        driver: 'redis',
+        host: process.env.REDIS_HOST ?? '',
+        port: process.env.REDIS_PORT ?? '',
+        password: process.env.REDIS_PASSWORD ?? '',
+      } : {
+        driver: 'memory'
+      }
+    }
+  },
 })

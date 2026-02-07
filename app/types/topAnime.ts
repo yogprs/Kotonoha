@@ -1,7 +1,8 @@
 import type { AnimeStatus } from "./data";
 
 export interface TopAnimeProps {
-    data: TopAnimeData[];
+    data: Media[];
+    // data: TopAnimeData[];
 }
 
 export type TopAnimeData = {
