@@ -1,10 +1,8 @@
-# version: "3.8"
-
 services:
   kotonoha:
     container_name: kotonoha_app
     build:
-      context: .
+      context: /home/github-runner/actions-runner/_work/Kotonoha/Kotonoha
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -13,5 +11,3 @@ services:
       - .env.production
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    # environment:
-    #   NODE_ENV: production
