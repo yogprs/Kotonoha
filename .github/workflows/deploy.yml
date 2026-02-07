@@ -15,6 +15,5 @@ jobs:
 
       - name: Deploy on server
         run: |
-          docker compose down || true
-          docker compose build --no-cache
-          docker compose up -d
+         cd /home/github-runner/apps/kotonoha
+         docker compose up -d --build
