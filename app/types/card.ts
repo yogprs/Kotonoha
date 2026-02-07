@@ -6,7 +6,7 @@ export interface CustomCardProps {
     width?: string;
     height?: string;
     item: {
-        id: string;
+        id: number;
         title: string;
         img: string;
         status: AnimeStatus;
@@ -14,8 +14,10 @@ export interface CustomCardProps {
         episode?: string | number;
         currentEpisode?: string | number;
     };
+    imageClass?: string;
+    imageSize?: string;
 }
 
 export interface CustomCardEmits {
-    'toggle': [id: string];
+    'toggle': [id: number];
 }

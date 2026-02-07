@@ -1,13 +1,13 @@
-import type { AnimeStatus } from "~/types/data";
+export const formatStatusText = (status?: string) => {
+  if (!status) return '-'
 
-export const formatStatusText = (status: string): string => {
   return status
     .toLowerCase()
     .replace(/_/g, ' ')
     .replace(/\b\w/g, (char) => char.toUpperCase())
 }
 
-export const getStatusColor = (status: AnimeStatus): string => {
+export const getStatusColor = (status: MediaStatus): string => {
   switch (status) {
     case "FINISHED":
       return "text-blue-500";
@@ -18,7 +18,7 @@ export const getStatusColor = (status: AnimeStatus): string => {
     case "NOT_YET_RELEASED":
       return "text-yellow-500";
 
-    case "CANCELLED":
+    case "CANCELED":
       return "text-red-500";
 
     case "HIATUS":
@@ -39,4 +39,31 @@ export const capitalizeFirstLetter = (str: string) => {
   }
   const lowerStr = str?.toLowerCase()
   return lowerStr?.charAt(0).toUpperCase() + lowerStr?.slice(1);
+}
+
+export const formatDate = (dateObj: FuzzyDate) => {
+  if (!dateObj?.year || !dateObj?.month || !dateObj?.day) return 'TBA';
+
+  // JS Date menggunakan index bulan dari 0 (Januari = 0)
+  const date = new Date(dateObj?.year, dateObj?.month - 1, dateObj?.day);
+
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(date);
+};
+
+export const formatMediaFormat = (type: MediaFormat): string => {
+  const keepUpper = ['TV', 'ONA', 'OVA'];
+
+  const withSpaces = type.replace(/_/g, ' ');
+  const words = withSpaces.split(' ');
+
+  const formatted = words.map(word => {
+    if (keepUpper.includes(word)) return word;
+    return word.charAt(0) + word.slice(1).toLowerCase();
+  });
+
+  return formatted.join(' ');
 }

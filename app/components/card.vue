@@ -8,7 +8,15 @@ const props = withDefaults(defineProps<CustomCardProps>(), {
 
 const emits = defineEmits<CustomCardEmits>();
 
-const cardToggle = (id: string) => {
+const imgClass = computed(() => [
+  props.imageClass ?? 'w-full h-full object-cover',
+]);
+
+const imgSize = computed(() => {
+  props.imageSize;
+});
+
+const cardToggle = (id: number) => {
   if (!props?.hoverable) return;
   emits('toggle', id);
 };
@@ -30,14 +38,15 @@ const cardToggle = (id: string) => {
         class="absolute z-20 top-[4%] left-2"
       >
         <div class="bg-primary px-2 rounded-md">
-          <span class="text-sm">EP {{ item?.currentEpisode }}</span>
+          <span class="text-sm">EP {{ item?.currentEpisode ?? '-' }}</span>
         </div>
       </div>
 
       <!-- IMAGE -->
       <NuxtImg
         :src="item?.img"
-        class="w-full h-full object-cover"
+        :class="imgClass"
+        :size="imgSize"
         loading="lazy"
       />
 
@@ -52,23 +61,30 @@ const cardToggle = (id: string) => {
         v-if="hoverable"
         class="absolute z-10 bottom-4 left-0 right-0 hidden group-hover:flex gap-2 items-center justify-center text-white text-sm transition-all duration-300"
       >
-        <span>{{ item?.format }}</span>
+        <span>{{
+          item?.format
+            ? formatMediaFormat(item?.format as MediaFormat)
+            : item?.format
+        }}</span>
         <span>•</span>
         <span
-          :class="[getStatusColor(item.status), 'py-1 rounded-md font-medium']"
-          >{{ formatStatusText(item?.status) }}</span
+          :class="[
+            getStatusColor(item.status as MediaStatus),
+            'py-1 rounded-md font-medium',
+          ]"
+          >{{ item?.status ? formatStatusText(item?.status) : '-' }}</span
         >
         <span>•</span>
-        <span>Ep {{ item?.episode }}</span>
+        <span>{{ item?.episode ? `Ep ${item?.episode}` : '-' }}</span>
       </div>
     </div>
 
     <!-- TITLE -->
     <div v-if="hoverable" :class="`${width ?? 'w-50'} text-center py-2`">
       <span
-        class="font-bold transition-colors duration-200 group-hover:text-text-secondary"
+        class="font-bold transition-colors duration-200 group-hover:text-text-secondary text-2xl md:text-lg"
       >
-        {{ item?.title }}
+        {{ item?.title ?? '-' }}
       </span>
     </div>
   </div>
