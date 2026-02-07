@@ -13,7 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy on server
+      - name: Build & Deploy
         run: |
-         cd /home/github-runner/apps/kotonoha
-         docker compose up -d --build
+          docker compose down || true
+          docker compose build --no-cache
+          docker compose up -d
