@@ -2,8 +2,21 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: 'Kotonoha',
+      htmlAttrs: {
+        lang: 'en' // Set your site's language here (e.g., 'es' for Spanish)
+      },
+      charset: 'utf-16',
+      viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+    },
+  },
   compatibilityDate: '2025-07-15',
   runtimeConfig: {
+    redis_host: process.env.REDIS_HOST ?? '',
+    redis_port: process.env.REDIS_PORT ? Number(process.env.REDIS_PORT) : 6379,
+    redis_password: process.env.REDIS_PASSWORD ?? '',
     public: {
       anilistAPI: process.env.ANILIST_API_URL ?? '',
       timeout: 8000,
@@ -44,14 +57,20 @@ export default defineNuxtConfig({
   },
   nitro: {
     storage: {
-      cache: process.env.APP_MODE === 'development' ? {
+      cache: {
         driver: 'redis',
         host: process.env.REDIS_HOST ?? '',
         port: process.env.REDIS_PORT ?? '',
         password: process.env.REDIS_PASSWORD ?? '',
-      } : {
-        driver: 'memory'
       }
+      // cache: process.env.APP_MODE === 'production' ? {
+      //   driver: 'redis',
+      //   host: process.env.REDIS_HOST ?? '',
+      //   port: process.env.REDIS_PORT ?? '',
+      //   password: process.env.REDIS_PASSWORD ?? '',
+      // } : {
+      //   driver: 'memory'
+      // }
     }
   },
 })

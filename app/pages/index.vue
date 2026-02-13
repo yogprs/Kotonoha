@@ -27,8 +27,9 @@ const { data: top } = useLazyFetch<TopAnime>('/api/anime/top', {
       />
       <h3 class="font-bold text-2xl">Currently Trending</h3>
     </div>
-    <div class="h-full">
-      <Carousel :media="(trending?.trending?.media as Media[]) ?? []" />
+    <div class="h-full px-12 md:px-14">
+      <HomeCarouselAnime :media="(trending?.trending?.media as Media[]) ?? []"" />
+      <!-- <Carousel :media="(trending?.trending?.media as Media[]) ?? []" /> -->
     </div>
   </div>
   <div class="h-full flex flex-col gap-6 pt-16 pb-8">
@@ -54,6 +55,11 @@ const { data: top } = useLazyFetch<TopAnime>('/api/anime/top', {
       </div>
     </div>
   </div>
+  <!-- <div class="w-full">
+    <div class="h-full px-4 md:px-14 pb-8">
+      <HomeCarouselAnime :media="(trending?.trending?.media as Media[]) ?? []"" />
+    </div>
+  </div> -->
 </template>
 <style lang="css" scoped>
 .herowrap {

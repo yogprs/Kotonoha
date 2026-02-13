@@ -2,22 +2,28 @@ import { TrendingAnimeResponse } from "~~/server/types/anilist";
 import { filterMediaHero } from "~~/server/utils/data";
 
 export default defineEventHandler(async () => {
+    const nitro = useNitroApp()
     const config = useRuntimeConfig();
-    const storage = useStorage('cache'); // Access the cache storage
     const key = `anime:trending`;
 
-    const cached = await storage.getItem<TrendingAnime>(key);
-    if (cached) {
-        const hero = filterMediaHero(cached?.trending?.media as Media[])
-        return {
-            ...cached,
-            type: 'cache',
-            heroSection: {
+
+    const redis = nitro.redis;
+    if (redis) {
+        // await redis?.del(key)
+        const cached = await redis.get(key)
+        if (cached) {
+            const dataCache = JSON.parse(cached) as TrendingAnime;
+            const hero = filterMediaHero(dataCache?.trending?.media as Media[])
+            return {
+                ...dataCache,
+                heroSection: {
                 media: hero,
                 index: hero?.index
             },
+                type: 'cache',
+            }
         };
-    };
+    }
 
     const data = await $fetch<TrendingAnimeResponse>(config.public.anilistAPI as string, {
         method: "POST",
@@ -34,10 +40,9 @@ export default defineEventHandler(async () => {
         }
     });
 
-    
-    await storage.setItem(key, data?.data, {
-        ttl: 60 * 30 * 2,
-    });
+    if (redis) {
+        await redis.set(key, JSON.stringify(data?.data), 'EX', 3600) // TTL 1 hour
+    }
 
     const media = data?.data?.trending?.media;
 

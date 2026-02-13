@@ -1,21 +1,25 @@
 import { PopularAnimeResponse } from "~~/server/types/anilist";
-import { PopularAnime } from "~~/shared/types/anilist";
 
 export default defineEventHandler(async () => {
+    const nitro = useNitroApp()
     const config = useRuntimeConfig();
-    const storage = useStorage('cache'); // Access the cache storage
-    const key = `anime:popular`;
-    const cached = await storage.getItem<PopularAnime>(key);
 
-    if (cached) {
-        return {
-            ...cached,
-            type: 'cache'
-        }
-    };
+    const key = `anime:popular`;
+    const redis = nitro.redis;
+    if (redis) {
+        // await redis?.del(key)
+        const cached = await redis.get(key)
+        if (cached) {
+            const dataCache = JSON.parse(cached) as PopularAnime
+            return {
+                 ...dataCache,
+                type: 'cache'
+            }
+        };
+    }
 
     const data = await $fetch<PopularAnimeResponse>(config.public.anilistAPI as string, {
-         method: "POST",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json",
@@ -29,9 +33,10 @@ export default defineEventHandler(async () => {
         }
     });
 
-    await storage.setItem(key, data?.data, {
-        ttl: 60 * 30 * 2,
-    });
+    if (redis) {
+        await redis.set(key, JSON.stringify(data?.data), 'EX', 3600) // TTL 1 hour
+        // await redis.set(key, JSON.stringify(data), 'EX', 20) // TTL 20 sec
+    }
 
     return  data?.data;
 })

@@ -46,12 +46,16 @@ const items = computed((): CustomCarouselItem[] => {
       v-for="i in count"
       :key="i"
       class="
-    w-60 md:w-50 shrink-0 space-y-3
-    hidden
-    nth-[-n+1]:block
-    md:nth-[-n+3]:block
-    lg:nth-[-n+6]:block
-  "
+        w-60 md:w-50 shrink-0 space-y-3
+        hidden
+        sm:nth-[-n+1]:block
+        md:nth-[-n+3]:block
+        lg:nth-[-n+4]:block
+        xl:nth-[-n+5]:block
+        2xl:nth-[-n+6]:block
+        [@media(width>=120rem)]:nth-[-n+7]:block
+      ">
+        <!-- lg:nth-[-n+6]:block -->
       <!-- Poster -->
       <USkeleton class="h-80 md:h-75 w-full rounded-xl" />
 
