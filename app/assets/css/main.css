@@ -12,6 +12,10 @@
   --color-text-secondary: #ad92c9;
   --color-anime-darker: oklch(0.08 0.02 275);
   --color-anime-text-muted: oklch(0.7 0.02 275);
+  --color-anime-accent: oklch(0.72 0.22 330);
+  --color-anime-primary: oklch(0.65 0.25 275);
+  --color-anime-gold: oklch(0.8 0.18 85);
+  --color-anime-surface-light: oklch(0.22 0.04 275);
 }
 
 html {

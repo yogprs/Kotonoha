@@ -1,8 +1,23 @@
 export type MediaSeason = 'WINTER' | 'SPRING' | 'SUMMER' | 'FALL';
-export type MediaFormat = 'TV' | 'TV_SHORT' | 'MOVIE' | 'SPECIAL' | 'OVA' | 'ONA' | 'MUSIC' | 'MANGA' | 'NOVEL' | 'ONE_SHOT';
-export type MediaStatus = 'FINISHED' | 'RELEASING' | 'NOT_YET_RELEASED' | 'CANCELED' | 'HIATUS';
+export type MediaFormat =
+  | 'TV'
+  | 'TV_SHORT'
+  | 'MOVIE'
+  | 'SPECIAL'
+  | 'OVA'
+  | 'ONA'
+  | 'MUSIC'
+  | 'MANGA'
+  | 'NOVEL'
+  | 'ONE_SHOT';
+export type MediaStatus =
+  | 'FINISHED'
+  | 'RELEASING'
+  | 'NOT_YET_RELEASED'
+  | 'CANCELED'
+  | 'HIATUS';
 
-export interface FuzzyDate  {
+export interface FuzzyDate {
   day: number;
   month: number;
   year: number;
@@ -11,13 +26,13 @@ export interface FuzzyDate  {
 export interface PageInfo {
   total: number;
   perPage: number;
-  currentPage: number
+  currentPage: number;
   lastPage: number;
   hasNextPage: boolean;
 }
 
 export interface AnimePage {
-  pageInfo: PageInfo
+  pageInfo: PageInfo;
 }
 
 export interface Media {
@@ -48,8 +63,8 @@ export interface Media {
     episode: number;
   };
   seasonYear: number;
-  startDate : FuzzyDate;
-  endDate: FuzzyDate
+  startDate: FuzzyDate;
+  endDate: FuzzyDate;
   trailer: {
     id: string;
     site: string;
@@ -58,7 +73,7 @@ export interface Media {
 }
 
 export interface MediaAnime {
-  media: Media
+  media: Media;
 }
 
 export interface TrendingAnime {
@@ -72,14 +87,11 @@ export interface TopAnime {
   top: {
     pageInfo: PageInfo;
     media: Media[];
-  }
+  };
 }
 
 export interface TrendingAnimeWithSection extends TrendingAnime {
-  heroSection: {
-      media: Media;
-      index: number;
-  };
+  heroSection: Media[];
 }
 
 export interface PopularAnime {
@@ -87,4 +99,16 @@ export interface PopularAnime {
     pageInfo: PageInfo;
     media: Media[];
   };
-};
+}
+
+export interface Recommendations {
+  id: number;
+  media: Media;
+}
+
+export interface RecommendationsAnime {
+  recommendation: {
+    pageInfo: PageInfo;
+    recommendations: Recommendations[];
+  };
+}
