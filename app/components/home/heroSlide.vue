@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HeroSlideProps } from '~/types/heroSlide';
+import type { HeroSlideProps } from '../../types/heroSlide';
 
 const props = defineProps<HeroSlideProps>();
 
