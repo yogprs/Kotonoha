@@ -67,7 +67,7 @@ export const queryGetAnime = `
             }
             }
         }
-    }`
+    }`;
 
 export const queryTrendingAnime = `
     query($perPage: Int, $page: Int) {
@@ -125,7 +125,7 @@ export const queryTrendingAnime = `
             }
         }
     }
-`
+`;
 
 export const queryPopularAnime = `
     query($perPage: Int, $page: Int) {
@@ -178,7 +178,7 @@ export const queryPopularAnime = `
             }
         }
     }
-`
+`;
 
 export const queryTopAnime = `
     query($perPage: Int, $page: Int) {
@@ -229,4 +229,58 @@ export const queryTopAnime = `
             }
         }
     }
-`
+`;
+
+export const queryRecommendationsAnime = `
+     query($perPage: Int, $page: Int) {
+        recommendation: Page(page: $page, perPage: $perPage) {
+            pageInfo {
+                total
+                perPage
+                currentPage
+                lastPage
+                hasNextPage
+            }
+            recommendations(sort: RATING_DESC) {
+                id
+                media {
+                    id
+                    idMal
+                    title {
+                        romaji
+                        english
+                        userPreferred
+                    }
+                    coverImage {
+                        large
+                        extraLarge
+                        color
+                    }
+                    episodes
+                    status
+                    duration
+                    genres
+                    season
+                    format
+                    averageScore
+                    popularity
+                    nextAiringEpisode {
+                        airingAt
+                        episode
+                    }
+                    seasonYear
+                    startDate {
+                        year
+                        month
+                        day
+                    }
+                    endDate {
+                        year
+                        month
+                        day
+                    }
+                }
+            }
+        }
+    }
+`;

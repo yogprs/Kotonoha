@@ -2,17 +2,23 @@ import { TopAnimeResponse } from "~~/server/types/anilist";
 import { TopAnime } from "~~/shared/types/anilist";
 
 export default defineEventHandler(async () => {
+    const nitro = useNitroApp()
     const config = useRuntimeConfig();
-    const storage = useStorage('cache'); // Access the cache storage
     const key = `anime:top`;
-    
-    const cached = await storage.getItem<TopAnime>(key);
-    if (cached) {
-        return {
-            ...cached,
-            type: 'cache'
-        }
-    };
+
+    const redis = nitro.redis;
+
+    if (redis) {
+        // await redis?.del(key)
+        const cached = await redis.get(key)
+        if (cached) {
+            const dataCache = JSON.parse(cached) as TopAnime;
+            return {
+                 ...dataCache,
+                type: 'cache'
+            }
+        };
+    }
 
     const data = await $fetch<TopAnimeResponse>(config.public.anilistAPI as string, {
         method: "POST",
@@ -29,9 +35,9 @@ export default defineEventHandler(async () => {
         }
     })
 
-    await storage.setItem(key, data?.data, {
-        ttl: 60 * 30 * 2,
-    });
+    if (redis) {
+        await redis.set(key, JSON.stringify(data?.data), 'EX', 3600) // TTL 1 hour
+    }
 
     return data?.data;
 })

@@ -1,3 +1,5 @@
+import { Recommendations } from '~~/shared/types/anilist';
+
 export interface AnimeResponse {
   data: {
     Page: {
@@ -19,7 +21,7 @@ export interface TrendingAnimeResponse {
     trending: {
       pageInfo: PageInfo;
       media: Media[];
-    }
+    };
     // trending: AnimePage & MediaAnime[];
   };
 }
@@ -28,7 +30,7 @@ export interface PopularAnime {
   popular: {
     pageInfo: PageInfo;
     media: Media[];
-  }
+  };
 }
 
 export interface PopularAnimeResponse {
@@ -36,8 +38,8 @@ export interface PopularAnimeResponse {
     popular: {
       pageInfo: PageInfo;
       media: Media[];
-    }
-  }
+    };
+  };
 }
 
 export interface TopAnimeResponse {
@@ -45,6 +47,15 @@ export interface TopAnimeResponse {
     top: {
       pageInfo: PageInfo;
       media: Media[];
-    }
-  }
+    };
+  };
+}
+
+export interface RecommendationsAnimeResponse {
+  data: {
+    recommendation: {
+      pageInfo: PageInfo;
+      recommendations: Recommendations[];
+    };
+  };
 }

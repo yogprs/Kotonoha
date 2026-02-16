@@ -48,6 +48,7 @@ const cardToggle = (id: number) => {
         :class="imgClass"
         :size="imgSize"
         loading="lazy"
+        :alt="item?.title"
       />
 
       <!-- BOTTOM SHADOW OVERLAY -->

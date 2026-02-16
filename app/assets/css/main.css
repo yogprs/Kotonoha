@@ -1,15 +1,21 @@
-@import "tailwindcss";
-@import "@nuxt/ui";
+@import 'tailwindcss';
+@import '@nuxt/ui';
 
 @theme {
-    --font-lora: 'Lora', serif;
-    --font-surfer: 'Original Surfer', cursive;
-    --color-primary: #7F13EC;
-    --color-primary-hover: #6B10C6;
-    --color-bg-light: #F7F6F8;
-    --color-bg-dark: #191022;
-    --color-surface-dark: #2D1B3E;
-    --color-text-secondary: #AD92C9;
+  --font-lora: 'Lora', serif;
+  --font-surfer: 'Original Surfer', cursive;
+  --color-primary: #7f13ec;
+  --color-primary-hover: #6b10c6;
+  --color-bg-light: #f7f6f8;
+  --color-bg-dark: #191022;
+  --color-surface-dark: #2d1b3e;
+  --color-text-secondary: #ad92c9;
+  --color-anime-darker: oklch(0.08 0.02 275);
+  --color-anime-text-muted: oklch(0.7 0.02 275);
+  --color-anime-accent: oklch(0.72 0.22 330);
+  --color-anime-primary: oklch(0.65 0.25 275);
+  --color-anime-gold: oklch(0.8 0.18 85);
+  --color-anime-surface-light: oklch(0.22 0.04 275);
 }
 
 html {
@@ -32,7 +38,7 @@ html {
 }
 
 .dark ::-webkit-scrollbar {
-  background: rgba(15, 15, 20, 0.9)
+  background: rgba(15, 15, 20, 0.9);
 }
 
 .dark ::-webkit-scrollbar-thumb {
@@ -49,4 +55,12 @@ html {
     rgba(167, 139, 250, 1),
     rgba(124, 58, 237, 1)
   );
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: oklch(0.15 0.03 275 / 0.6);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid oklch(1 0 0 / 0.08);
 }
