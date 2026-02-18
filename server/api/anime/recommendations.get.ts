@@ -45,4 +45,5 @@ export default defineEventHandler(async () => {
     await redis.set(key, JSON.stringify(data?.data), 'EX', 7200); // TTL 2 hour
     // await redis.set(key, JSON.stringify(data), 'EX', 20) // TTL 20 sec
   }
+  return data?.data;
 });

@@ -1,4 +1,4 @@
-import { Recommendations } from '~~/shared/types/anilist';
+import { MediaDetail, Recommendations } from '~~/shared/types/anilist';
 
 export interface AnimeResponse {
   data: {
@@ -58,4 +58,12 @@ export interface RecommendationsAnimeResponse {
       recommendations: Recommendations[];
     };
   };
+}
+
+export interface AnimeDetail {
+  anime: MediaDetail;
+}
+
+export interface AnimeDetailResponse {
+  data: AnimeDetail;
 }

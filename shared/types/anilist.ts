@@ -16,6 +16,38 @@ export type MediaStatus =
   | 'NOT_YET_RELEASED'
   | 'CANCELED'
   | 'HIATUS';
+export type MediaSource =
+  | 'ORIGINAL'
+  | 'MANGA'
+  | 'LIGHT_NOVEL'
+  | 'VISUAL_NOVEL'
+  | 'VIDEO_GAME'
+  | 'OTHER'
+  | 'NOVEL'
+  | 'DOUJINSHI'
+  | 'ANIME'
+  | 'WEB_NOVEL'
+  | 'LIVE_ACTION'
+  | 'GAME'
+  | 'COMIC'
+  | 'MULTIMEDIA_PROJECT'
+  | 'PICTURE_BOOK';
+export type MediaType = 'ANIME' | 'MANGA';
+export type MediaRelation =
+  | 'ADAPTATION'
+  | 'PREQUEL'
+  | 'SEQUEL'
+  | 'PARENT'
+  | 'SIDE_STORY'
+  | 'CHARACTER'
+  | 'SUMMARY'
+  | 'ALTERNATIVE'
+  | 'SPIN_OFF'
+  | 'OTHER'
+  | 'SOURCE'
+  | 'COMPILATION'
+  | 'CONTAINS';
+export type CharacterRole = 'MAIN' | 'SUPPORTING' | 'BACKGROUND';
 
 export interface FuzzyDate {
   day: number;
@@ -61,6 +93,7 @@ export interface Media {
   nextAiringEpisode: {
     airingAt: number;
     episode: number;
+    timeUntilAiring: number;
   };
   seasonYear: number;
   startDate: FuzzyDate;
@@ -69,6 +102,110 @@ export interface Media {
     id: string;
     site: string;
     thumbnail: string;
+  };
+}
+
+export interface MediaStudio {
+  id: number;
+  name: string;
+  siteUrl: string;
+}
+
+export interface RelationNode {
+  id: string;
+  title: {
+    romaji: string;
+    native: string;
+    english: string;
+  };
+  format: MediaFormat;
+  coverImage: {
+    large: string;
+    extraLarge: string;
+  };
+  chapters: number | null;
+  status: MediaStatus;
+}
+
+export interface Relation {
+  edges: {
+    relationType: MediaRelation;
+    node: RelationNode;
+  }[];
+}
+
+export interface MediaDetailRecommendation {
+  mediaRecommendation: {
+    id: number;
+    title: {
+      romaji: string;
+      english: string;
+    };
+    coverImage: {
+      extraLarge: string;
+      large: string;
+    };
+    episodes: number;
+    status: MediaStatus;
+    format: MediaFormat;
+    nextAiringEpisode: {
+      airingAt: number;
+      episode: number;
+      timeUntilAiring: number;
+    };
+  };
+}
+
+export interface VoiceActor {
+  id: number;
+  name: {
+    first: string;
+    middle: string | null;
+    last: string | null;
+    full: string;
+    native: string;
+    userPreferred: string;
+  };
+  image: {
+    large: string;
+  };
+}
+
+export interface CharacterVoiceActor {
+  voiceActor: VoiceActor;
+}
+
+export interface Character {
+  id: number;
+  role: CharacterRole;
+  node: {
+    name: {
+      first: string;
+      last: string | null;
+      full: string;
+      native: string;
+      userPreferred: string;
+    };
+    image: {
+      large: string;
+    };
+  };
+  voiceActorRoles: CharacterVoiceActor[];
+}
+
+export interface MediaDetail extends Media {
+  source: MediaSource;
+  type: MediaType;
+  countryOfOrigin: any;
+  studios: {
+    nodes: MediaStudio[];
+  };
+  relations: Relation;
+  recommendations: {
+    nodes: MediaDetailRecommendation[];
+  };
+  characters: {
+    edges: Character[];
   };
 }
 
