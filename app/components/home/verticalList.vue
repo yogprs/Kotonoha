@@ -12,27 +12,15 @@ const animeData = computed(() => {
   return [];
 });
 
-const getColor = (num: number, type: 'index' | 'title') => {
-  if (type === 'index') {
-    if (num === 1) {
-      return 'text-[#FFD700]';
-    } else if (num === 2) {
-      return 'text-[#C0C0C0]';
-    } else if (num === 3) {
-      return 'text-[#CD7F32]';
-    } else {
-      return 'text-[#388E3C]';
-    }
-  } else if (type === 'title') {
-    if (num === 1) {
-      return 'hover:text-[#FFD700]';
-    } else if (num === 2) {
-      return 'hover:text-[#C0C0C0]';
-    } else if (num === 3) {
-      return 'hover:text-[#CD7F32]';
-    } else {
-      return 'hover:text-[#388E3C]';
-    }
+const getColor = (num: number) => {
+  if (num === 1) {
+    return 'text-[#FFD700]';
+  } else if (num === 2) {
+    return 'text-[#C0C0C0]';
+  } else if (num === 3) {
+    return 'text-[#CD7F32]';
+  } else {
+    return 'text-[#388E3C]';
   }
 };
 
@@ -104,14 +92,16 @@ const getDataEpsDuration = (
     <!-- Index out data element -->
     <div
       :class="[
-        getColor(index + 1, 'index'),
+        getColor(index + 1),
         'hidden md:block font-bold pr-2 group-last:pr-0',
       ]"
     >
       #{{ index + 1 }}
     </div>
-    <div
-      class="flex w-full gap-px bg-surface-dark p-2 my-1.75 mx-2.5 justify-between rounded-lg"
+    <NuxtLink
+      :key="item?.id"
+      :to="`/anime/${item?.id}`"
+      class="flex w-full gap-px bg-surface-dark/40 p-2 my-1.75 mx-2.5 justify-between rounded-lg group transition-colors border border-white/5 hover:border-primary/50"
     >
       <!-- Absolute Index -->
       <div
@@ -125,7 +115,7 @@ const getDataEpsDuration = (
         <div class="w-12 md:w-15 lg:w-18 aspect-2/3 shrink-0">
           <NuxtImg
             :src="item?.coverImage?.large"
-            class="w-full h-full object-cover rounded-lg"
+            class="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform"
             loading="lazy"
             :alt="item?.title?.romaji"
           />
@@ -134,10 +124,10 @@ const getDataEpsDuration = (
           <div
             class="no-underline overflow-hidden [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:1]"
           >
-            <a
+            <span
               href="/"
-              :class="[getColor(index + 1, 'title'), 'text-lg font-bold']"
-              >{{ item?.title?.romaji ? item?.title?.romaji : '-' }}</a
+              class="group-hover:text-primary transition-colors text-lg font-bold"
+              >{{ item?.title?.romaji ? item?.title?.romaji : '-' }}</span
             >
           </div>
           <div
@@ -176,6 +166,6 @@ const getDataEpsDuration = (
           }}</span>
         </div>
       </div>
-    </div>
+    </NuxtLink>
   </div>
 </template>

@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+}
+
+// Type for episode rated (Embedded)
+type EpisodeRating {
+  episodeNumber Int
+  rating        Float
+  createdAt     DateTime @default(now())
+}
+
+// Enum for status
+enum WatchStatus {
+  PLAN_TO_WATCH
+  WATCHING
+  DROPPED
+  COMPLETED
+}
+
+model User {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  username      String @unique
+  email         String @unique
+  image         String
+  password      String
+
+  animeList     AnimeEntry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user")
+}
+
+// AnimeEntry Model (Data wishlist/draft user)
+model AnimeEntry {
+  id               String          @id @default(auto()) @map("_id") @db.ObjectId
+  userId           String          @db.ObjectId
+  user             User            @relation(fields: [userId], references: [id])
+  
+  // reference for ID from anilist data
+  anilistId        Int             
+  
+  // Watching progress (how many episodes have been watched)
+  progress         Int             @default(0)
+
+  status           WatchStatus     @default(PLAN_TO_WATCH)
+  
+  // Rating accumulated from all episodes (User Level)
+  myTotalRating    Float           @default(0)
+  
+  // List of ratings per episode 
+  episodeRatings   EpisodeRating[]
+  
+  updatedAt        DateTime        @updatedAt
+
+  @@unique([userId, anilistId]) // One user can only have one entry per anime
+  @@map("anime_entry")
+}
+
+model GlobalAnimeStats {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  anilistId        Int      @unique
+  totalRatingSum   Float    @default(0) 
+  totalReviewCount Int      @default(0) 
+  averageRating    Float    @default(0)
+
+  @@map("global_anime_stats")
+}

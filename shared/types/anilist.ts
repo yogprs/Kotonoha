@@ -48,6 +48,13 @@ export type MediaRelation =
   | 'COMPILATION'
   | 'CONTAINS';
 export type CharacterRole = 'MAIN' | 'SUPPORTING' | 'BACKGROUND';
+export type MediaSort =
+  | 'START_DATE_DESC'
+  | 'SCORE_DESC'
+  | 'POPULARITY_DESC'
+  | 'TRENDING_DESC'
+  | 'TITLE_ROMAJI_DESC'
+  | 'SEARCH_MATCH';
 
 export interface FuzzyDate {
   day: number;
@@ -248,4 +255,15 @@ export interface RecommendationsAnime {
     pageInfo: PageInfo;
     recommendations: Recommendations[];
   };
+}
+
+export interface VariableSearchValue {
+  search?: string;
+  seasonYear?: number;
+  season?: MediaSeason;
+  format?: MediaFormat;
+  sort?: MediaSort[] | MediaSort;
+  genres?: string[];
+  page?: number;
+  type?: MediaType;
 }

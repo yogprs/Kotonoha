@@ -70,6 +70,10 @@ const setShowType = (type: 'top' | 'popular'): void => {
   if (type === showType.value) return;
   showType.value = type;
 };
+
+useHead({
+  title: 'Kotonoha',
+});
 </script>
 <template>
   <div

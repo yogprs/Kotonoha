@@ -45,7 +45,10 @@ const formatSeason = (season: MediaSeason, seasonYear: number): string => {
 };
 
 useHead({
-  title: () => anime.value?.title?.romaji ?? 'Anime Detail',
+  title: () =>
+    anime.value?.title?.romaji
+      ? `${anime.value?.title?.romaji} | Anime Detail`
+      : 'Anime Detail',
 });
 </script>
 
@@ -104,15 +107,20 @@ useHead({
         <div
           class="md:w-1/3 lg:w-1/4 shrink-0 flex justify-center md:justify-start"
         >
-          <div class="relative group">
+          <div class="relative group h-fit">
             <NuxtImg
               v-if="anime.coverImage?.extraLarge || anime?.coverImage?.large"
               :src="anime.coverImage?.extraLarge || anime?.coverImage?.large"
               :alt="anime?.title?.romaji ?? '-'"
-              class="w-64 md:w-full rounded-2xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] ring-1 ring-white/10"
+              class="w-64 md:w-full lg:w-80 rounded-2xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] ring-1 ring-white/10"
             />
             <div
-              class="absolute -bottom-4 -right-4 bg-surface-dark border border-white/10 p-3 rounded-xl shadow-lg backdrop-blur-md flex flex-col items-center"
+              class="absolute -top-5 -right-4 glass p-3 rounded-xl shadow-lg backdrop-blur-md flex flex-col items-center hover:cursor-pointer"
+            >
+              <UIcon name="i-material-symbols:add" class="text-[20px]" />
+            </div>
+            <div
+              class="absolute -bottom-5 -right-4 bg-surface-dark border border-white/10 p-3 rounded-xl shadow-lg backdrop-blur-md flex flex-col items-center"
             >
               <span
                 class="text-xs text-text-secondary uppercase tracking-wider font-bold"
@@ -155,12 +163,13 @@ useHead({
                 anime?.format ? anime?.format?.replace('_', ' ') : '-'
               }}</UBadge
             >
-            <!-- :color="anime?.status === 'RELEASING' ? 'green' : 'gray'" -->
             <UBadge
               v-if="anime?.status"
               variant="soft"
               :class="`capitalize ${getStatusColor(anime?.status)} ${getStatusbgColor(anime?.status)}`"
-              >{{ anime?.status?.replace('_', ' ') }}</UBadge
+              >{{
+                anime?.status ? formatStatusText(anime?.status) : '-'
+              }}</UBadge
             >
             <UBadge
               v-if="anime?.seasonYear"
@@ -193,66 +202,59 @@ useHead({
             class="prose prose-invert prose-sm md:prose-base max-w-none text-gray-300/90 font-light leading-relaxed glass p-6 rounded-2xl"
             v-html="anime?.description"
           ></div>
-
-          <!-- Key Info Grid -->
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-            <div
-              class="p-4 rounded-xl bg-surface-dark/50 border border-white/5"
-            >
-              <div
-                class="text-xs text-text-secondary uppercase tracking-wider mb-1"
-              >
-                Studios
-              </div>
-              <div class="font-medium truncate">
-                <span v-if="anime?.studios?.nodes?.length">
-                  {{
-                    anime?.studios?.nodes
-                      .map((s) => capitalizeFirstLetter(s?.name))
-                      .join(', ')
-                  }}
-                </span>
-                <span v-else class="text-gray-500">-</span>
-              </div>
-            </div>
-            <div
-              class="p-4 rounded-xl bg-surface-dark/50 border border-white/5"
-            >
-              <div
-                class="text-xs text-text-secondary uppercase tracking-wider mb-1"
-              >
-                Source
-              </div>
-              <div class="font-medium capitalize">
-                {{ anime?.source?.replace('_', ' ').toLowerCase() || '-' }}
-              </div>
-            </div>
-            <div
-              class="p-4 rounded-xl bg-surface-dark/50 border border-white/5"
-            >
-              <div
-                class="text-xs text-text-secondary uppercase tracking-wider mb-1"
-              >
-                Start Date
-              </div>
-              <div class="font-medium">{{ formatDate(anime?.startDate) }}</div>
-            </div>
-            <div
-              class="p-4 rounded-xl bg-surface-dark/50 border border-white/5"
-            >
-              <div
-                class="text-xs text-text-secondary uppercase tracking-wider mb-1"
-              >
-                Next Ep
-              </div>
-              <div class="font-medium">
-                {{
-                  anime?.nextAiringEpisode
-                    ? `Ep ${anime?.nextAiringEpisode?.episode} in ${anime?.nextAiringEpisode ? (anime?.nextAiringEpisode?.timeUntilAiring / 86400).toFixed(0) : '-'} days`
-                    : 'Finished'
-                }}
-              </div>
-            </div>
+        </div>
+      </div>
+      <!-- Key Info Grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+        <div class="p-4 rounded-xl bg-surface-dark/50 border border-white/5">
+          <div
+            class="text-xs text-text-secondary uppercase tracking-wider mb-1"
+          >
+            Studios
+          </div>
+          <div class="font-medium truncate">
+            <span v-if="anime?.studios?.nodes?.length">
+              {{
+                anime?.studios?.nodes
+                  .map((s) => capitalizeFirstLetter(s?.name))
+                  .join(', ')
+              }}
+            </span>
+            <span v-else class="text-gray-500">-</span>
+          </div>
+        </div>
+        <div class="p-4 rounded-xl bg-surface-dark/50 border border-white/5">
+          <div
+            class="text-xs text-text-secondary uppercase tracking-wider mb-1"
+          >
+            Source
+          </div>
+          <div class="font-medium capitalize">
+            {{ anime?.source?.replace('_', ' ').toLowerCase() || '-' }}
+          </div>
+        </div>
+        <div class="p-4 rounded-xl bg-surface-dark/50 border border-white/5">
+          <div
+            class="text-xs text-text-secondary uppercase tracking-wider mb-1"
+          >
+            Start Date
+          </div>
+          <div class="font-medium">
+            {{ anime?.startDate ? formatDate(anime?.startDate) : '-' }}
+          </div>
+        </div>
+        <div class="p-4 rounded-xl bg-surface-dark/50 border border-white/5">
+          <div
+            class="text-xs text-text-secondary uppercase tracking-wider mb-1"
+          >
+            Next Ep
+          </div>
+          <div class="font-medium">
+            {{
+              anime?.nextAiringEpisode
+                ? `Ep ${anime?.nextAiringEpisode?.episode} in ${anime?.nextAiringEpisode ? (anime?.nextAiringEpisode?.timeUntilAiring / 86400).toFixed(0) : '-'} days`
+                : '-'
+            }}
           </div>
         </div>
       </div>
@@ -363,7 +365,16 @@ useHead({
                 )
                 .slice(0, 8)"
               :key="edge?.node?.id"
-              :to="`/anime/${edge?.node?.id}`"
+              :to="
+                edge?.node?.format === 'TV' ||
+                edge?.node?.format === 'MOVIE' ||
+                edge?.node?.format === 'ONA' ||
+                edge?.node?.format === 'SPECIAL' ||
+                edge?.node?.format === 'OVA' ||
+                edge?.node?.format === 'TV_SHORT'
+                  ? `/anime/${edge?.node?.id}`
+                  : ''
+              "
               class="group relative aspect-2/3 rounded-lg overflow-hidden bg-surface-dark ring-1 ring-white/5 transition-all hover:ring-primary"
             >
               <NuxtImg

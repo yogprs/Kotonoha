@@ -1,5 +1,4 @@
 import { TopAnimeResponse } from '~~/server/types/anilist';
-import { TopAnime } from '~~/shared/types/anilist';
 
 export default defineEventHandler(async () => {
   const nitro = useNitroApp();

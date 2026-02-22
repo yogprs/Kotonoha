@@ -214,22 +214,21 @@ watch(
           ref="buttonsRef"
           class="flex flex-wrap items-center gap-3 pt-1 sm:pt-2"
         >
-          <button
+          <UButton
+            :key="slide?.id"
+            :to="`/anime/${slide?.id}`"
             class="group relative flex cursor-pointer items-center gap-2 overflow-hidden rounded-xl bg-anime-primary px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-anime-primary/30 sm:px-7 sm:py-3 sm:text-sm"
           >
             <div
               class="h-4 w-4 transition-transform duration-300 group-hover:scale-110 sm:h-5 sm:w-5"
             >
-              <UIcon
-                name="i-material-symbols:play-circle"
-                class="text-[20px]"
-              />
+              <UIcon name="i-material-symbols:info" class="text-[20px]" />
             </div>
-            Watch Now
+            Detail
             <div
               class="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"
             />
-          </button>
+          </UButton>
           <button
             class="flex cursor-pointer items-center gap-2 rounded-xl border border-anime-text-muted/20 px-5 py-2.5 text-xs font-semibold text-anime-text-muted transition-all duration-300 hover:border-anime-primary/50 hover:text-anime-primary sm:px-7 sm:py-3 sm:text-sm glass"
           >

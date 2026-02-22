@@ -28,16 +28,6 @@ const setYear = () => {
               AniList</a
             >.
           </span>
-          <!-- <span class="text-sm text-justify">
-            This site stores user account data only for anime draft and list
-            purposes. Anime data provided by the
-            <a
-              href="https://docs.anilist.co"
-              class="underline hover:cursor-pointer"
-            >
-              AniList API </a
-            >. AniList content is licensed under the MIT License.
-          </span> -->
         </div>
       </div>
       <div

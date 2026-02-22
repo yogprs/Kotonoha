@@ -1,5 +1,5 @@
 export interface HerolSlides {
-  id?: string | number;
+  id: number;
   title: string;
   subtitle?: string;
   image: string;

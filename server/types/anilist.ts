@@ -1,4 +1,8 @@
-import { MediaDetail, Recommendations } from '~~/shared/types/anilist';
+import {
+  MediaDetail,
+  Recommendations,
+  VariableSearchValue,
+} from '~~/shared/types/anilist';
 
 export interface AnimeResponse {
   data: {
@@ -66,4 +70,8 @@ export interface AnimeDetail {
 
 export interface AnimeDetailResponse {
   data: AnimeDetail;
+}
+
+export interface QueryGetAnime extends VariableSearchValue {
+  currentPage?: number;
 }

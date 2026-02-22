@@ -1,6 +1,8 @@
 export const formatStatusText = (status?: string) => {
   if (!status) return '-';
-
+  if (status === 'RELEASING') {
+    status = 'AIRING';
+  }
   return status
     .toLowerCase()
     .replace(/_/g, ' ')

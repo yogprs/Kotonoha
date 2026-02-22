@@ -1,6 +1,5 @@
 import { RecommendationsAnimeResponse } from '~~/server/types/anilist';
 import { queryRecommendationsAnime } from '~~/server/utils/query';
-import { RecommendationsAnime } from '~~/shared/types/anilist';
 
 export default defineEventHandler(async () => {
   const nitro = useNitroApp();

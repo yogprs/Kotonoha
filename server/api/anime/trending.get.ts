@@ -19,14 +19,6 @@ export default defineEventHandler(async () => {
         heroSection: hero,
         type: 'cache',
       };
-      // return {
-      //     ...dataCache,
-      //     heroSection: {
-      //     media: hero,
-      //     index: hero?.index
-      // },
-      //     type: 'cache',
-      // }
     }
   }
 
@@ -60,12 +52,4 @@ export default defineEventHandler(async () => {
     ...data.data,
     heroSection: hero,
   };
-
-  // return {
-  //     ...data.data,
-  //     heroSection: {
-  //         media: hero,
-  //         index: hero?.index
-  //     },
-  // };
 });

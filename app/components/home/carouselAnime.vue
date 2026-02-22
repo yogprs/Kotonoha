@@ -75,55 +75,57 @@ const scrollRight = () => {
         class="group flex-none pr-4 md:pr-7 last:pr-0"
         :style="{ animationDelay: `${index * 100}ms` }"
       >
-        <div
-          class="relative h-56 w-36 overflow-hidden rounded-xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-primary/20 md:h-56 md:w-36 lg:h-80 lg:w-56"
-        >
-          <!-- Card Image -->
-          <!-- <div class="absolute inset-0" :style="{ background: anime?.coverImage?.large }" /> -->
-          <div class="absolute inset-0">
-            <NuxtImg
-              :src="anime?.coverImage?.large"
-              :alt="anime?.title"
-              loading="lazy"
-              class="w-full h-full"
+        <NuxtLink :key="anime?.id" :to="`/anime/${anime?.id}`">
+          <div
+            class="relative h-56 w-36 overflow-hidden rounded-xl transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-primary/20 md:h-56 md:w-36 lg:h-80 lg:w-56"
+          >
+            <!-- Card Image -->
+            <!-- <div class="absolute inset-0" :style="{ background: anime?.coverImage?.large }" /> -->
+            <div class="absolute inset-0">
+              <NuxtImg
+                :src="anime?.coverImage?.large"
+                :alt="anime?.title"
+                loading="lazy"
+                class="w-full h-full"
+              />
+            </div>
+            <!-- Overlay -->
+            <div
+              class="absolute inset-0 bg-linear-to-t from-anime-darker via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             />
-          </div>
-          <!-- Overlay -->
-          <div
-            class="absolute inset-0 bg-linear-to-t from-anime-darker via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          />
-          <!-- Rank Badge -->
-          <div
-            v-if="useIndex"
-            class="absolute left-2 top-2 flex h-6 w-6 items-center justify-center rounded-md font-display text-xs font-black text-white sm:h-7 sm:w-7 sm:text-sm glass"
-          >
-            {{ index + 1 }}
-          </div>
-          <!-- Rating -->
-          <div
-            class="absolute right-2 top-2 flex items-center gap-0.5 rounded-md px-1.5 py-0.5 text-[10px] font-bold text-anime-gold sm:text-xs md:text-sm glass"
-          >
-            <UIcon name="i-material-symbols:star" class="text-[14px]" />
-            {{ anime.averageScore ? formatScore(anime?.averageScore) : '-' }}
-          </div>
-          <!-- Info on Hover -->
-          <div
-            class="absolute inset-x-0 bottom-0 translate-y-full p-3 transition-transform duration-300 group-hover:translate-y-0"
-          >
-            <h3 class="text-xs font-bold text-white sm:text-sm md:text-lg">
-              {{ anime.title?.romaji ? anime.title?.romaji : '-' }}
-            </h3>
-            <div class="flex gap-1">
-              <p
-                class="mt-0.5 text-[10px] text-anime-text-muted sm:text-xs md:text-sm"
-              >
-                {{
-                  anime?.genres?.length > 0 ? anime?.genres?.join(', ') : '-'
-                }}
-              </p>
+            <!-- Rank Badge -->
+            <div
+              v-if="useIndex"
+              class="absolute left-2 top-2 flex h-6 w-6 items-center justify-center rounded-md font-display text-xs font-black text-white sm:h-7 sm:w-7 sm:text-sm glass"
+            >
+              {{ index + 1 }}
+            </div>
+            <!-- Rating -->
+            <div
+              class="absolute right-2 top-2 flex items-center gap-0.5 rounded-md px-1.5 py-0.5 text-[10px] font-bold text-anime-gold sm:text-xs md:text-sm glass"
+            >
+              <UIcon name="i-material-symbols:star" class="text-[14px]" />
+              {{ anime.averageScore ? formatScore(anime?.averageScore) : '-' }}
+            </div>
+            <!-- Info on Hover -->
+            <div
+              class="absolute inset-x-0 bottom-0 translate-y-full p-3 transition-transform duration-300 group-hover:translate-y-0"
+            >
+              <h3 class="text-xs font-bold text-white sm:text-sm md:text-lg">
+                {{ anime.title?.romaji ? anime.title?.romaji : '-' }}
+              </h3>
+              <div class="flex gap-1">
+                <p
+                  class="mt-0.5 text-[10px] text-anime-text-muted sm:text-xs md:text-sm"
+                >
+                  {{
+                    anime?.genres?.length > 0 ? anime?.genres?.join(', ') : '-'
+                  }}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </div>
 
