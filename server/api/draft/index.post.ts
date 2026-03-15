@@ -56,4 +56,6 @@ export default defineEventHandler(async (event) => {
       updatedAt: date,
     },
   });
+
+  return { success: true, message: 'Create draft is successfully!' };
 });

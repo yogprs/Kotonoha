@@ -4,6 +4,10 @@ import type { RecommendationsAnime, TopAnime } from '~~/shared/types/anilist';
 const { data: trending } = useLazyFetch<TrendingAnimeWithSection>(
   '/api/anime/trending',
   {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
     server: false,
   },
 );
@@ -11,15 +15,27 @@ const { data: trending } = useLazyFetch<TrendingAnimeWithSection>(
 const { data: recommendation } = useLazyFetch<RecommendationsAnime>(
   '/api/anime/recommendations',
   {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
     server: false,
   },
 );
 
 const { data: top } = useLazyFetch<TopAnime>('/api/anime/top', {
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
   server: false,
 });
 
 const { data: popular } = useLazyFetch<PopularAnime>('/api/anime/popular', {
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
   server: false,
 });
 

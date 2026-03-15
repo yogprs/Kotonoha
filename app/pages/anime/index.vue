@@ -203,6 +203,10 @@ const {
   error,
   status,
 } = useLazyFetch<AnimeSearchResponse>('/api/anime', {
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  },
   server: false,
   query: queryParams,
 });

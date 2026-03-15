@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Media, PageInfo } from '~~/shared/types/anilist';
 
+import { useAuthStore } from '~~/app/stores/auth';
+
 const router = useRouter();
 const route = useRoute();
 const isScrolled = ref(false);
+const authStore = useAuthStore();
 
 // --- Mobile menu ---
 const isMobileMenuOpen = ref(false);
@@ -235,9 +238,16 @@ watch(
         <!-- Account (Desktop) -->
         <button
           id="navbar-account-btn"
-          class="hidden md:flex items-center justify-center size-10 rounded-xl bg-white/5 border border-white/40 hover:border-primary/40 hover:bg-primary/10 transition-all duration-200 cursor-pointer"
+          @click="router.push(authStore.user ? '/profile' : '/login')"
+          class="hidden md:flex items-center justify-center size-10 rounded-xl bg-white/5 border border-white/40 hover:border-primary/40 hover:bg-primary/10 transition-all duration-200 cursor-pointer overflow-hidden"
         >
+          <NuxtImg
+            v-if="authStore?.user && authStore.user?.image"
+            :src="authStore.user.image"
+            class="w-full h-full object-cover"
+          />
           <UIcon
+            v-else
             name="i-material-symbols:account-circle"
             class="size-6 text-white hover:text-white/60 transition-colors"
           />
@@ -351,10 +361,16 @@ watch(
         <!-- Drawer Footer -->
         <div class="p-4 border-t border-white/10">
           <button
+            @click="
+              () => {
+                closeMobileMenu();
+                router.push(authStore.user ? '/profile' : '/login');
+              }
+            "
             class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-text-secondary bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
           >
             <UIcon name="i-material-symbols:account-circle" class="size-5" />
-            Account
+            {{ authStore.user ? 'Profile' : 'Login / Register' }}
           </button>
         </div>
       </div>

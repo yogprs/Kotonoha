@@ -5,12 +5,13 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  // output   = "../app/generated/prisma"
+  provider = "prisma-client"
+  output   = "../server/generated/prisma"
 }
 
 datasource db {
   provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 // Type for episode rated (Embedded)
@@ -37,6 +38,7 @@ model User {
   password      String
 
   animeList     AnimeEntry[]
+  refreshToken  RefreshToken[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -58,7 +60,7 @@ model AnimeEntry {
 
   status           WatchStatus     @default(PLAN_TO_WATCH)
   
-  // Rating accumulated from all episodes (User Level)
+  // Rating accumulated fromString          @db.ObjectId all episodes (User Level)
   myTotalRating    Float           @default(0)
   
   // List of ratings per episode 
@@ -78,4 +80,15 @@ model GlobalAnimeStats {
   averageRating    Float    @default(0)
 
   @@map("global_anime_stats")
+}
+
+model RefreshToken {
+  id        String             @id  @default(auto()) @map("_id") @db.ObjectId
+  token     String          @unique
+  userId    String          @db.ObjectId
+  user      User            @relation(fields: [userId], references: [id])
+  expiresAt DateTime
+  createdAt DateTime        @default(now())
+
+  @@map("refresh_token")
 }

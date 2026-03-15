@@ -2,11 +2,60 @@
 import type { AnimeDetail } from '~~/server/types/anilist';
 
 const route = useRoute();
+import { useAuthStore } from '~~/app/stores/auth';
+const authStore = useAuthStore();
+const router = useRouter();
+
+const isAddModalOpen = ref(false);
+const draftEntry = ref({
+  status: 'PLAN_TO_WATCH',
+  progress: 0,
+  myTotalRating: 0,
+});
+const savingDraft = ref(false);
+
+const openAddModal = async () => {
+  if (!authStore.isAuthenticated) {
+    return router.push('/login');
+  }
+  isAddModalOpen.value = true;
+  try {
+    const res = await $fetch<any>(`/api/anime-entry/${route.params.id}`);
+    if (res?.entry) {
+      draftEntry.value = {
+        status: res.entry.status,
+        progress: res.entry.progress,
+        myTotalRating: res.entry.myTotalRating,
+      };
+    }
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const saveDraft = async () => {
+  savingDraft.value = true;
+  try {
+    await $fetch(`/api/anime-entry/${route.params.id}`, {
+      method: 'POST',
+      body: draftEntry.value,
+    });
+    isAddModalOpen.value = false;
+  } catch (err) {
+    console.error(err);
+  } finally {
+    savingDraft.value = false;
+  }
+};
 
 // const id = computed(() => route.params.id);
 const { data, error } = useLazyFetch<AnimeDetail>(
   `/api/anime/${route.params.id}`,
   {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
     server: false,
     watch: [() => route.params.id],
   },
@@ -115,6 +164,8 @@ useHead({
               class="w-64 md:w-full lg:w-80 rounded-2xl shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] ring-1 ring-white/10"
             />
             <div
+              v-if="authStore.isAuthenticated"
+              @click="openAddModal"
               class="absolute -top-5 -right-4 glass p-3 rounded-xl shadow-lg backdrop-blur-md flex flex-col items-center hover:cursor-pointer"
             >
               <UIcon name="i-material-symbols:add" class="text-[20px]" />

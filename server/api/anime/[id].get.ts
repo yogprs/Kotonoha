@@ -4,6 +4,12 @@ export default defineEventHandler(async (event) => {
   const nitro = useNitroApp();
   const config = useRuntimeConfig();
   const id = getRouterParam(event, 'id');
+
+  const accept = getHeader(event, 'accept');
+  if (!accept?.includes('application/json')) {
+    throw createError({ statusCode: 403 });
+  }
+
   const key = `anime:detail:${id}`;
 
   const redis = nitro.redis;

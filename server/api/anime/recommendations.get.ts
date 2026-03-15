@@ -1,9 +1,15 @@
 import { RecommendationsAnimeResponse } from '~~/server/types/anilist';
 import { queryRecommendationsAnime } from '~~/server/utils/query';
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
   const nitro = useNitroApp();
   const config = useRuntimeConfig();
+
+  const accept = getHeader(event, 'accept');
+  if (!accept?.includes('application/json')) {
+    throw createError({ statusCode: 403 });
+  }
+
   const key = `anime:recommendations`;
 
   const redis = nitro.redis;

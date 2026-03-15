@@ -1,9 +1,15 @@
 import { TrendingAnimeResponse } from '~~/server/types/anilist';
 import { filterMediaHero } from '~~/server/utils/data';
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
   const nitro = useNitroApp();
   const config = useRuntimeConfig();
+
+  const accept = getHeader(event, 'accept');
+  if (!accept?.includes('application/json')) {
+    throw createError({ statusCode: 403 });
+  }
+
   const key = `anime:trending`;
 
   const redis = nitro.redis;

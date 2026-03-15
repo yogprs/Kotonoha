@@ -14,7 +14,10 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-07-15',
   runtimeConfig: {
+    app_mode: process.env.APP_MODE ?? 'development',
     dice_bear_image: process.env.DICE_BEAR_IMAGE ?? '',
+    jwt_secret: process.env.JWT_ACCESS_SECRET ?? '',
+    refesh_secret: process.env.JWT_REFRESH_SECRET ?? '',
     // cloudinary_cloud_name: process.env.CLOUDINARY_CLOUD_NAME ?? '',
     // cloudinary_api_key: process.env.CLOUDINARY_API_KEY ?? '',
     // cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET ?? '',

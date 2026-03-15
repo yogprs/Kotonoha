@@ -1,6 +1,8 @@
 import { profileStyle } from '~~/server/utils/profile';
+import { verifyAccessToken } from '~~/server/utils/verifyToken';
 
 export default defineEventHandler(async (event) => {
+  verifyAccessToken(event);
   const config = useRuntimeConfig();
 
   const query = getQuery(event) as QueryGetProfile;

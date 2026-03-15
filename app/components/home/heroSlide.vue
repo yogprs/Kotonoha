@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { HeroSlideProps } from '../../types/heroSlide';
-
+import { useAuthStore } from '~~/app/stores/auth';
 const props = defineProps<HeroSlideProps>();
+const authStore = useAuthStore();
 
 const { $gsap } = useNuxtApp();
 
@@ -230,6 +231,7 @@ watch(
             />
           </UButton>
           <button
+            v-if="authStore.isAuthenticated"
             class="flex cursor-pointer items-center gap-2 rounded-xl border border-anime-text-muted/20 px-5 py-2.5 text-xs font-semibold text-anime-text-muted transition-all duration-300 hover:border-anime-primary/50 hover:text-anime-primary sm:px-7 sm:py-3 sm:text-sm glass"
           >
             <div class="h-4 w-4 sm:h-5 sm:w-5">
